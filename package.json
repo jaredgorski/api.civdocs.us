@@ -1,0 +1,36 @@
+{
+  "name": "api.civdocs.us",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc",
+    "serve": "node dist/src/server.js",
+    "serve-debug": "nodemon --inspect dist/src/server.js",
+    "dev": "npm run build && npm run serve-debug",
+    "start": "npm run serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaredgorski/api.civdocs.us.git"
+  },
+  "author": "Jared Gorski <jaredgorski6@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaredgorski/api.civdocs.us/issues"
+  },
+  "homepage": "https://github.com/jaredgorski/api.civdocs.us#readme",
+  "devDependencies": {
+    "@types/compression": "^1.7.0",
+    "@types/mysql": "^2.15.15",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "@types/node": "^14.0.14",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
+}
