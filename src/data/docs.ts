@@ -1,12 +1,24 @@
 import {connect} from '../db/connection';
+import {toHyphenCase} from '../util/string';
 
-type Documents = {
-    [key: string]: number;
+export function fetchDocumentEnum(): Promise<Object> {
+    let query = 'SELECT title, document_id FROM jgorski_civdocs.documents;';
+
+    type DocEnum = {
+        [title: string]: number,
+    };
+
+    type DataItem = {
+        title: string,
+        document_id: number,
+    };
+
+    return dbQuery(query).then(data => data.reduce((obj: DocEnum, curr: DataItem) => {
+        const docTitle = toHyphenCase(curr.title);
+        obj[docTitle] = curr.document_id;
+        return obj;
+    }, {}));
 }
-
-export const DOCUMENTS: Documents = {
-    'the-federalist': 1,
-};
 
 export function fetchDocumentIndex(): Promise<Array<Object>> {
     let query = 'SELECT * FROM jgorski_civdocs.documents;';

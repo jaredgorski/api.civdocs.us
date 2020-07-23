@@ -1,8 +1,18 @@
 import {Request, Response} from 'express';
-import {DOCUMENTS, fetchDocumentContent, fetchDocumentData, fetchDocumentIndex, fetchDocumentSections} from '../data/docs';
+import {fetchDocumentEnum, fetchDocumentContent, fetchDocumentData, fetchDocumentIndex, fetchDocumentSections} from '../data/docs';
+import {toHyphenCase} from '../util/string';
 
 export const index = async (req: Request, res: Response) => {
-  const result = await fetchDocumentIndex();
+  let result = await fetchDocumentIndex();
+
+  for (let i = 0; i < result.length; i++) {
+    const {title} = result[i] as any;
+    const hyphen_case_title = toHyphenCase(title);
+    result[i] = {
+      ...result[i],
+      hyphen_case_title,
+    };
+  }
 
   res.json(result);
 }
@@ -14,8 +24,10 @@ export const getDocument = async (req: Request, res: Response) => {
     const {document, section, paragraph} = req.params;
     const {verbose, limit, offset} = req.query as any;
 
+    const documentEnum: any = await fetchDocumentEnum();
+
     const sanitized = {
-      document: DOCUMENTS[document],
+      document: documentEnum[document] || null,
       section: parseInt(section, 10),
       paragraph: parseInt(paragraph, 10),
       verbose: verbose === 'true',
