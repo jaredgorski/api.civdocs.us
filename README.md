@@ -19,8 +19,8 @@ This JSON API exposes a database containing documents relevant to the founding o
 * [Documents](#documents)
     * [List documents](#list-documents)
     * [Get document](#get-document)
-    * [Get document-section](#get-document-section)
-    * [Get document-paragraph](#get-document-paragraph)
+    * [Get document section](#get-document-section)
+    * [Get document paragraph](#get-document-paragraph)
 
 ---
 
