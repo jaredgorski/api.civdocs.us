@@ -1,15 +1,38 @@
-import mysql from 'mysql';
+import mysql, {Connection} from 'mysql';
 import {readonly} from './credentials.json'
 
-const connection = mysql.createConnection({
-  host: "ricky.heliohost.org",
-  user: readonly.user,
-  password: readonly.password,
-  database: 'jgorski_civdocs',
-});
+let connection: Connection;
 
-connection.connect(err => {
-  if (err) throw err;
-});
+const client = () => {
+  if (!connection) {
+    connection = mysql.createConnection({
+      host: "ricky.heliohost.org",
+      user: readonly.user,
+      password: readonly.password,
+      database: 'jgorski_civdocs',
+    });
 
-export default connection;
+    connection.connect((err: any) => {
+      if (err) throw err;
+    });
+  }
+
+  return connection;
+}
+
+async function query(query: string): Promise<Array<Object>> {
+    return new Promise((resolve, reject) => {
+        client().query(query, (err: any, rows: any) => {
+            if (err) reject(err);
+
+            resolve(rows);
+        });
+    });
+}
+
+const db = {
+  client,
+  query,
+};
+
+export default db;
