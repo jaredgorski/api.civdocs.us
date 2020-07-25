@@ -4,7 +4,9 @@
   </h1>
 </div>
 
-An open API for the founding documents of the United States of America.
+<div align="center">
+  An open API for the founding documents of the United States of America.
+</div>
 
 ## Routes
 
