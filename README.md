@@ -8,7 +8,23 @@
   An open API for the founding documents of the United States of America.
 </div>
 
-## Routes
+# Overview
+
+This JSON API exposes a database containing documents relevant to the founding of the United States of America. The goal of this API is to empower developers to include this content in their own work, thereby contributing to a general increase in historical knowledge and civic awareness.
+
+---
+
+# Table of Contents
+
+* [Documents](#documents)
+    * [List documents](#list-documents)
+    * [Get document](#get-document)
+    * [Get document-section](#get-document-section)
+    * [Get document-paragraph](#get-document-paragraph)
+
+---
+
+## Documents
 
 ### List documents
 
