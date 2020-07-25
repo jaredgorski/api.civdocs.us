@@ -4,11 +4,14 @@
   </h1>
 </div>
 
-## Documents
+An open API for the founding documents of the United States of America.
+
+## Routes
 
 ### List documents
 
-```http GET /docs
+```
+http GET /docs
 ```
 
 ##### Request
@@ -40,7 +43,8 @@ curl "http://api.civdocs.us/docs"
 
 ### Get document
 
-```http GET /docs/:document
+```
+http GET /docs/:document
 ```
 
 _NOTE: The :document param is the document title in hyphen-case_
@@ -99,7 +103,8 @@ curl "http://api.civdocs.us/docs/the-federalist?limit=1&verbose=true"
 
 ### Get document section
 
-```http GET /docs/:document/:section
+```
+http GET /docs/:document/:section
 ```
 
 _NOTE: The :section param is the `section_index` of the section being requested_
@@ -146,7 +151,8 @@ curl "http://api.civdocs.us/docs/the-federalist/1?limit=2&verbose=true"
 
 ### Get document paragraph
 
-```http GET /docs/:document/:section/:paragraph
+```
+http GET /docs/:document/:section/:paragraph
 ```
 
 _NOTE: The :paragraph param is the `paragraph_index` of the paragraph being requested_
