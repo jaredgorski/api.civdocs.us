@@ -21,6 +21,7 @@ This JSON API exposes a database containing documents relevant to the founding o
     * [Get document](#get-document)
     * [Get document section](#get-document-section)
     * [Get document paragraph](#get-document-paragraph)
+* [Repo links](#repo-links)
 
 ---
 
@@ -210,3 +211,7 @@ curl "http://api.civdocs.us/docs/the-federalist/1/3?verbose=true"
   "paragraphs_total": 12
 }
 ```
+
+## Repo links
+- [civdocs.us](https://github.com/jaredgorski/civdocs.us)
+- [data.civdocs.us](https://github.com/jaredgorski/data.civdocs.us)
