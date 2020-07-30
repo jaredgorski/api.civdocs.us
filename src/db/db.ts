@@ -6,7 +6,7 @@ let connection: Connection;
 const client = () => {
   if (!connection) {
     connection = mysql.createConnection({
-      host: "ricky.heliohost.org",
+      host: 'ricky.heliohost.org',
       user: readonly.user,
       password: readonly.password,
       database: 'jgorski_civdocs',
