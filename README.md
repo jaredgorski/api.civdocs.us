@@ -68,7 +68,7 @@ curl "http://api.civdocs.us/docs"
 http GET /docs/:document
 ```
 
-_NOTE: The :document param is the document title in hyphen-case_
+_NOTE: The :document param is the document `title` in hyphen-case_
 
 ##### Parameters
 
@@ -129,7 +129,7 @@ curl "http://api.civdocs.us/docs/the-federalist?limit=1&verbose=true"
 http GET /docs/:document/:section
 ```
 
-_NOTE: The :section param is the `section_index` of the section being requested_
+_NOTE: The :section param is the section `title` in hyphen-case_
 
 ##### Parameters
 
@@ -144,7 +144,7 @@ _NOTE: If `verbose=true`, the pagination parameters apply to the `content` of th
 ##### Request
 
 ```bash
-curl "http://api.civdocs.us/docs/the-federalist/1?limit=2&verbose=true"
+curl "http://api.civdocs.us/docs/the-federalist/federalist-no.-1?limit=2&verbose=true"
 ```
 
 ##### Response `200 OK`
@@ -168,12 +168,12 @@ curl "http://api.civdocs.us/docs/the-federalist/1?limit=2&verbose=true"
   "paragraphs_total": 12,
   "hyphen_case_title": "federalist-no. 1",
   "document_hyphen_case_title": "the-federalist",
-  "link": "http://api.civdocs.us/docs/the-federalist/1",
-  "link_verbose": "http://api.civdocs.us/docs/the-federalist/1?verbose=true",
+  "link": "http://api.civdocs.us/docs/the-federalist/federalist-no.-1",
+  "link_verbose": "http://api.civdocs.us/docs/the-federalist/federalist-no.-1?verbose=true",
   "prev_section_link": null,
-  "next_section_link": "http://api.civdocs.us/docs/the-federalist/2",
+  "next_section_link": "http://api.civdocs.us/docs/the-federalist/federalist-no.-2",
   "prev_section_link_verbose": null,
-  "next_section_link_verbose": "http://api.civdocs.us/docs/the-federalist/2?verbose=true",
+  "next_section_link_verbose": "http://api.civdocs.us/docs/the-federalist/federalist-no.-2?verbose=true",
   "content": [
     "To the People of the State of New York:",
     "AFTER an unequivocal experience of the inefficiency of the subsisting federal government, you are called upon to deliberate on a new Constitution for the United States of America. The subject speaks its own importance; comprehending in its consequences nothing less than the existence of the UNION, the safety and welfare of the parts of which it is composed, the fate of an empire in many respects the most interesting in the world. It has been frequently remarked that it seems to have been reserved to the people of this country, by their conduct and example, to decide the important question, whether societies of men are really capable or not of establishing good government from reflection and choice, or whether they are forever destined to depend for their political constitutions on accident and force. If there be any truth in the remark, the crisis at which we are arrived may with propriety be regarded as the era in which that decision is to be made; and a wrong election of the part we shall act may, in this view, deserve to be considered as the general misfortune of mankind."
@@ -198,7 +198,7 @@ _NOTE: The :paragraph param is the `paragraph_index` of the paragraph being requ
 ##### Request
 
 ```bash
-curl "http://api.civdocs.us/docs/the-federalist/1/3?verbose=true"
+curl "http://api.civdocs.us/docs/the-federalist/federalist-no.-1/3?verbose=true"
 ```
 
 ##### Response `200 OK`
@@ -228,10 +228,10 @@ curl "http://api.civdocs.us/docs/the-federalist/1/3?verbose=true"
   "document_hyphen_case_title": "the-federalist",
   "link": "http://api.civdocs.us/docs/the-federalist/1/3",
   "link_verbose": "http://api.civdocs.us/docs/the-federalist/1/3?verbose=true",
-  "prev_paragraph_link": "http://api.civdocs.us/docs/the-federalist/1/2",
-  "next_paragraph_link": "http://api.civdocs.us/docs/the-federalist/1/4",
-  "prev_paragraph_link_verbose": "http://api.civdocs.us/docs/the-federalist/1/2?verbose=true",
-  "next_paragraph_link_verbose": "http://api.civdocs.us/docs/the-federalist/1/4?verbose=true"
+  "prev_paragraph_link": "http://api.civdocs.us/docs/the-federalist/federalist-no.-1/2",
+  "next_paragraph_link": "http://api.civdocs.us/docs/the-federalist/federalist-no.-1/4",
+  "prev_paragraph_link_verbose": "http://api.civdocs.us/docs/the-federalist/federalist-no.-1/2?verbose=true",
+  "next_paragraph_link_verbose": "http://api.civdocs.us/docs/the-federalist/federalist-no.-1/4?verbose=true"
 }
 ```
 

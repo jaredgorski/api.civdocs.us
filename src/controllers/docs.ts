@@ -1,18 +1,22 @@
 import {Request, Response} from 'express';
-import {fetchDocumentEnum, fetchDocumentContent, fetchDocumentData, fetchDocumentIndex, fetchDocumentSections} from '../data/docs';
+import {fetchDocumentEnum, fetchDocumentSectionEnum, fetchDocumentContent, fetchDocumentData, fetchDocumentIndex, fetchDocumentSections} from '../data/docs';
 import {toHyphenCase} from '../util/string';
 import {getSectionLinks, getParagraphLinks} from '../util/links';
 import {addHyphenCaseTitleToRows, addDocumentLinkToRows, transformRows, addSectionLinksToRows} from '../util/transform';
 
 const transformSectionRows = (rows: any) => {
   for (let i = 0; i < rows.length; i++) {
-    const {title, document_title} = rows[i];
+    const {title, document_title, prev_section_title, next_section_title} = rows[i];
     const hyphen_case_title = toHyphenCase(title);
     const document_hyphen_case_title = toHyphenCase(document_title);
+    const prev_section_hyphen_case_title = prev_section_title ? toHyphenCase(prev_section_title) : null;
+    const next_section_hyphen_case_title = next_section_title ? toHyphenCase(next_section_title) : null;
     rows[i] = {
       ...rows[i],
       hyphen_case_title,
       document_hyphen_case_title,
+      prev_section_hyphen_case_title,
+      next_section_hyphen_case_title,
     };
   }
 
@@ -33,10 +37,17 @@ export const getDocument = async (req: Request, res: Response) => {
     const {verbose, limit, offset} = req.query as any;
 
     const documentEnum: any = await fetchDocumentEnum();
+    const sanitizedDocumentId = documentEnum[decodeURIComponent(document)] || null;
+
+    let sectionEnum: any;
+    if (sanitizedDocumentId) {
+      sectionEnum = await fetchDocumentSectionEnum(sanitizedDocumentId);
+    }
+    const sanitizedSectionId = sectionEnum ? (sectionEnum[decodeURIComponent(section)] || null) : null;
 
     const sanitized = {
-      document: documentEnum[document] || null,
-      section: parseInt(section, 10),
+      document: sanitizedDocumentId,
+      section: sanitizedSectionId,
       paragraph: parseInt(paragraph, 10),
       verbose: verbose === 'true',
       limit: parseInt(limit, 10),
@@ -61,7 +72,12 @@ export const getDocument = async (req: Request, res: Response) => {
           .then(addSectionLinksToRows);
         data = {...data, sections: docSections};
       } else if (sanitized.section && !sanitized.paragraph) {
-        data.document_hyphen_case_title = toHyphenCase(data.document_title);
+        const {document_title, prev_section_title, next_section_title} = data;
+
+        data.document_hyphen_case_title = toHyphenCase(document_title);
+        data.prev_section_hyphen_case_title = prev_section_title ? toHyphenCase(prev_section_title) : null;
+        data.next_section_hyphen_case_title = next_section_title ? toHyphenCase(next_section_title) : null;
+
         const sectionLinks = getSectionLinks(data);
         data = {
           ...data,
