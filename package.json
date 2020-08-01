@@ -6,8 +6,8 @@
     "build": "tsc",
     "serve": "node dist/src/server.js",
     "serve-debug": "nodemon --inspect dist/src/server.js",
-    "dev": "npm run build && npm run serve-debug",
-    "start": "npm run serve",
+    "dev": "export NODE_ENV=development && npm run build && npm run serve-debug",
+    "start": "export NODE_ENV=production && npm run serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

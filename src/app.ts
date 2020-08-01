@@ -1,3 +1,16 @@
+const getApiHost = () => {
+  switch (process.env.NODE_ENV) {
+    case'development':
+      return 'http://localhost:7687'
+      break;
+    case 'production':
+    default:
+      return 'http://api.civdocs.us'
+      break;
+  }
+};
+process.env.API_HOST = getApiHost();
+
 import express from "express";
 import compression from "compression";
 import bodyParser from "body-parser";
