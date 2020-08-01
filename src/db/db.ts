@@ -1,4 +1,4 @@
-import mysql, {Connection} from 'mysql';
+import mysql, {Connection, MysqlError, OkPacket} from 'mysql';
 import {readonly} from './credentials.json'
 
 let connection: Connection;
@@ -12,7 +12,7 @@ const client = () => {
       database: 'jgorski_civdocs',
     });
 
-    connection.connect((err: any) => {
+    connection.connect((err: MysqlError) => {
       if (err) throw err;
     });
   }
@@ -22,7 +22,7 @@ const client = () => {
 
 async function query(query: string): Promise<Array<Object>> {
     return new Promise((resolve, reject) => {
-        client().query(query, (err: any, rows: any) => {
+        client().query(query, (err: MysqlError, rows: OkPacket[]) => {
             if (err) reject(err);
 
             resolve(rows);
