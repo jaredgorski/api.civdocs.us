@@ -5,7 +5,7 @@
 </div>
 
 <div align="center">
-  An open API for the founding documents of the United States of America.
+  An open API serving the founding documents of the United States of America.
 </div>
 
 # Overview
